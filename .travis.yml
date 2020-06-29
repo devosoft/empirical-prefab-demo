@@ -11,7 +11,7 @@ install:
 - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-8 90
 - git clone -b prefab https://github.com/devosoft/Empirical ../Empirical
 - git clone https://github.com/emscripten-core/emsdk.git && cd emsdk && git pull &&
-  ./emsdk install 1.38.27 && ./emsdk activate 1.38.27 && . ./emsdk_env.sh && cd ..
+  ./emsdk install 1.38.48 && ./emsdk activate 1.38.48 && . ./emsdk_env.sh && cd ..
 - git submodule init
 - git submodule update
 script:
