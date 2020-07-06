@@ -14,6 +14,8 @@
 #include "prefab/ConfigPanel.h"
 #include "prefab/FontAwesomeIcon.h"
 #include "prefab/LoadingIcon.h"
+#include "prefab/LoadingModal.h"
+#include "prefab/Modal.h"
 #include "prefab/ToggleSwitch.h"
 
 #include "../example.h"
@@ -25,12 +27,24 @@ namespace UI = emp::web;
 
 UI::Document doc("emp_base");
 
+// emp::prefab::Modal my_modal;
+// doc << my_modal;
+
 SampleConfig cfg;
 
-emp::prefab::ConfigPanel config_panel(cfg);
+// doc.Redraw();
 
 int main()
 {
+  // emp::Initialize();
+  // emp::prefab::LoadingModal spinning_modal;
+  // doc << spinning_modal;
+  // doc.Redraw();
+  // spinning_modal.Load_Modal();
+  // doc.Activate();
+  // doc.Freeze();
+  emp::prefab::ConfigPanel & config_panel = *(new emp::prefab::ConfigPanel(cfg));
+
   std::cout << "Hello, console!" << std::endl;
 
   doc << "<p>These prefabricated tools were created to help you quickly create interesting web applicications without being overwhelmed with the underlying HTML, CSS, and Bootstrap classes required. These tools use Empirical's web tools to provide structure for the site, and many of the prefab tools inherit from web tools so you can add your own styling and stream them into other web components in a similar way.</p>";
@@ -263,7 +277,6 @@ int main()
   doc << "<h1>FontAwesome Icon Example</h1>";
   UI::Div toggleIcons;
   doc << toggleIcons;
-  toggleIcons << "<p>Toggle Icons</p>";
   emp::prefab::FontAwesomeIcon check("fa-check-square-o");
   toggleIcons << check;
   emp::prefab::FontAwesomeIcon dots("fa-ellipsis-v");
@@ -346,6 +359,107 @@ int main()
 
   doc << "<hr><br>";  
 
+  doc << "<h1>Loading Modal Example</h1>";
+
+  doc << "<p>Click button to show loading modal</p>";
+  UI::Button loading_modal_demo([](){emscripten_run_script("DemoLoadingModal();");}, "Show Loading Modal");
+  doc << loading_modal_demo;
+  loading_modal_demo.SetAttr(
+    "class", "btn btn-info"
+  );
+
+  doc << "<br><br><h3>Code:</h3>";
+  // TODO: Add jsDelivr reference to loading modal
+  const std::string loading_modal_code =
+    R"(
+      #include "web/web.h"
+      #include "prefab/LoadingModal.h"
+      
+      emp::web::Document doc("emp_base");
+
+      int main(){
+        // Code that takes a while to render on web page
+
+        emp::prefab::CloseLoadingModal();
+      }
+    )";
+  emp::prefab::CodeBlock loading_modal_code_block(loading_modal_code, "c++");
+  doc << loading_modal_code_block;
+  doc << "Add Loading Modal script at the top of the body section of your HTML file.";
+  const std::string loading_modal_html =
+    R"(
+      &lthtml&gt
+      &lthead&gt
+        &ltlink rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"&gt
+        &ltscript src="jquery-1.11.2.min.js&gt&lt/script&gt
+        &ltscript src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"&gt&lt/script&gt
+        &ltscript src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"&gt&lt/script&gt
+        &ltlink rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devosoft/Empirical@prefab/source/prefab/DefaultConfigPanelStyle.css"&gt
+      &lt/head&gt
+
+      &ltbody&gt
+        &ltscript src="LoadingModal.js"&gt&lt/script&gt
+        &lt!-- Rest of web page --&gt
+      &lt/body&gt
+      &lt/html&gt
+    )";
+  emp::prefab::CodeBlock loading_modal_code_block_html(loading_modal_html, "html");
+  doc << loading_modal_code_block_html;
+
+  doc << "<hr><br>";
+
+  doc << "<h1>Modal Example</h1>";
+  emp::prefab::Modal modal;
+  doc << modal;
+
+  modal.AddHeaderContent("<h3>Modal Header Section</h3>");
+  modal.AddBodyContent("This is the content of the modal");
+
+  modal.AddFooterContent("Modal Footer Section");
+  UI::Button close_btn([](){;}, "Close");
+  close_btn.SetAttr("class", "btn btn-secondary");
+  modal.AddFooterContent(close_btn);
+  modal.AddButton(close_btn);
+
+  modal.AddClosingX();
+
+  UI::Button modal_btn([](){;}, "Show Modal");
+  doc << modal_btn;
+  modal_btn.SetAttr("class", "btn btn-primary");
+  modal.AddButton(modal_btn);
+
+  doc << "<br><br><h3>Code:</h3>";
+  const std::string modal_code =
+    R"(
+      #include "web/web.h"
+      #include "web/Button.h"
+      #include "prefab/Modal.h"
+      
+      emp::web::Document doc("emp_base");
+
+      emp::prefab::Modal modal;
+      doc << modal;
+
+      modal.AddHeaderContent("&lth3&gtModal Header Section&lt/h3&gt");
+      modal.AddBodyContent("This is the content of the modal");
+
+      modal.AddFooterContent("Modal Footer Section");
+      UI::Button close_btn([](){;}, "Close");
+      close_btn.SetAttr("class", "btn btn-secondary");
+      modal.AddFooterContent(close_btn);
+      modal.AddButton(close_btn);
+
+      modal.AddClosingX();
+
+      UI::Button modal_btn([](){;}, "Show Modal");
+      doc << modal_btn;
+      modal_btn.SetAttr("class", "btn btn-primary");
+      modal.AddButton(modal_btn);
+    )";
+  emp::prefab::CodeBlock modal_code_block(modal_code, "c++");
+  doc << modal_code_block;
+
+  doc << "<hr><br>";
 
   doc << "<h1>Toggle Switch Example</h1>";
 
@@ -390,4 +504,6 @@ int main()
   doc << toggle_html_block;
 
   doc << "<hr><br>";
+
+  emp::prefab::CloseLoadingModal();
 }
