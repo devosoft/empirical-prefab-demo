@@ -479,14 +479,15 @@ int main()
   doc << toggle_switch_ex;
   toggle_switch_ex.AddHeaderContent("<h3>Toggle Switch Example</h3>");
 
-  UI::Input input_element(
-      [](std::string str){;},
-      "checkbox", NULL, "input_id"
-  );
-  emp::prefab::ToggleSwitch my_switch(input_element);
-  toggle_switch_ex.AddBodyContent(my_switch);
+  emp::prefab::ToggleSwitch on_switch([](std::string val){}, "checkbox", "Switch Defult On", true);
+  toggle_switch_ex.AddBodyContent(on_switch);
 
-  my_switch.AddLabel("Switch Label");
+  toggle_switch_ex.AddBodyContent("<br>");
+
+  emp::prefab::ToggleSwitch off_switch([](std::string val){}, "checkbox", NULL, false);
+  toggle_switch_ex.AddBodyContent(off_switch);
+
+  off_switch.AddLabel("Switch Defult Off");
 
   toggle_switch_ex.AddBodyContent("<br><hr><br><h3>Code:</h3>");
 
@@ -499,14 +500,14 @@ int main()
       emp::web::Document doc("emp_base");
       
       int main(){
-        emp::web::Input input_element(
-          [](std::string str){;},
-          "checkbox", NULL, "input_id"
-        );
-        emp::prefab::ToggleSwitch my_switch(input_element);
-        doc << my_switch;
+        emp::prefab::ToggleSwitch on_switch([](std::string val){}, "checkbox", "Switch Defult On", true);
+        doc << on_switch;
 
-        my_switch.AddLabel("Switch Label");
+        doc << "&ltbr&gt";
+
+        emp::prefab::ToggleSwitch off_switch([](std::string val){}, "checkbox", NULL, false);
+        doc << off_switch;
+        off_switch.AddLabel("Switch Defult Off");
       }
     )";
 

@@ -12,4 +12,6 @@ EMP_BUILD_CONFIG( SampleConfig,
   VALUE(CELL_DIAMETER, double, 20.0, "Cell length and width in microns"),
   VALUE(INIT_POP_SIZE, int, 100, "Number of cells to seed population with"),
   VALUE(DATA_RESOLUTION, int, 10, "How many updates between printing data?"),
+  VALUE(SAMPLE_TEXT_INPUT, std::string, "none", "Input textbox"),
+  VALUE(SAMPLE_BOOLEAN_INPUT, bool, true, "Bool defaulted to on"),
 );
