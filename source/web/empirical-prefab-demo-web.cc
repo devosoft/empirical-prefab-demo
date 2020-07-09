@@ -2,22 +2,6 @@
 //  Copyright (C) Sara Boyd, 2020.
 //  Released under MIT license; see LICENSE
 
-// TODO: Add:
-// Live demo                                          [done]
-// Add margin bottom for cards                        [done]
-// info icon this is part of the empirical library    [done]
-// acknowledgements
-// source and ingrediants
-// add note how to use loading with script            [done]
-
-// To talk about on Wednesday
-// Loading Modal
-// Card
-// Code Block
-
-// refresh page btn
-// layout manager
-
 #include <iostream>
 
 #include "web/web.h"
