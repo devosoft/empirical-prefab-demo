@@ -2,6 +2,22 @@
 //  Copyright (C) Sara Boyd, 2020.
 //  Released under MIT license; see LICENSE
 
+// TODO: Add:
+// Live demo                                          [done]
+// Add margin bottom for cards                        [done]
+// info icon this is part of the empirical library    [done]
+// acknowledgements
+// source and ingrediants
+// add note how to use loading with script            [done]
+
+// To talk about on Wednesday
+// Loading Modal
+// Card
+// Code Block
+
+// refresh page btn
+// layout manager
+
 #include <iostream>
 
 #include "web/web.h"
@@ -35,6 +51,16 @@ int main()
 
   std::cout << "Hello, console!" << std::endl;
 
+  emp::web::Div empirical_info;
+  doc << empirical_info;
+  emp::prefab::FontAwesomeIcon info_icon("fa-info-circle");
+  empirical_info << info_icon;
+  info_icon.SetCSS(
+    "margin-right", "10px",
+    "display", "inline-block" 
+  );
+  empirical_info << "<p style=\"display: inline-block\">This is part of <a href=\"https://github.com/devosoft/Empirical\" target=\"_blank\">Empirical</a>, a library of tools for developing efficient, reliable, and accessible scientific software.</p>";
+
   doc << "<p>These prefabricated tools were created to help you quickly create interesting web applicications without being overwhelmed with the underlying HTML, CSS, and Bootstrap classes required. These tools use Empirical's web tools to provide structure for the site, and many of the prefab tools inherit from web tools so you can add your own styling and stream them into other web components in a similar way.</p>";
   doc << "<p>To uses any of these tools, you'll want to add the Bootstrap and Empirical's DefaultConfigStyle stylesheet to the head of your html file. Of course you can override the style of any of the classes in these files with your own CSS file if it is linked after these two.";
 
@@ -50,7 +76,8 @@ int main()
   // ------ Card Example ------
   emp::prefab::Card card_ex(emp::prefab::Card::Collapse::CLOSED, true);
   doc << card_ex;
-  card_ex.AddHeaderContent("<h3>Card Example</h3>");
+  card_ex.AddHeaderContent("<h3>Card</h3>");
+  card_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
   // Collapsible Card, default open
   emp::prefab::Card openCard(emp::prefab::Card::Collapse::OPEN, true);
   card_ex.AddBodyContent(openCard);
@@ -59,7 +86,7 @@ int main()
   openCard.AddBodyContent("Open body content <br> Glyphs <br> Linked title");
   openCard.SetCSS("margin-bottom", "15px");
 
-  card_ex.AddBodyContent("<br><hr><br><h3>Code:</h3>");
+  card_ex.AddBodyContent("<br><h3>Code:</h3><hr>");
   
   const std::string card_code =
     R"(
@@ -92,7 +119,8 @@ int main()
   // ------ Code Block Example ------
   emp::prefab::Card code_block_ex(emp::prefab::Card::Collapse::CLOSED, true);
   doc << code_block_ex;
-  code_block_ex.AddHeaderContent("<h3>Code Block Example</h1");
+  code_block_ex.AddHeaderContent("<h3>Code Block </h1");
+  code_block_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
 
   const std::string code_block_code = 
     R"(
@@ -131,7 +159,8 @@ int main()
   // ------ Collapse Example ------
   emp::prefab::Card collapse_ex(emp::prefab::Card::Collapse::CLOSED, true);
   doc << collapse_ex;
-  collapse_ex.AddHeaderContent("<h3>Collapse Example</h3>");
+  collapse_ex.AddHeaderContent("<h3>Collapse</h3>");
+  collapse_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
   UI::Div btn;
   UI::Div content;
 
@@ -150,7 +179,7 @@ int main()
     "border-radius", "5px",
     "padding", "10px"
   );
-  collapse_ex.AddBodyContent("<br><hr><br><h3>Code:</h3>");
+  collapse_ex.AddBodyContent("<br><h3>Code:</h3><hr>");
 
   const std::string collapse_code =
     R"(
@@ -188,7 +217,8 @@ int main()
   // ------ Comment Box Example ------
   emp::prefab::Card comment_box_ex(emp::prefab::Card::Collapse::CLOSED, true);
   doc << comment_box_ex;
-  comment_box_ex.AddHeaderContent("<h3>Comment Box Example</h3>");
+  comment_box_ex.AddHeaderContent("<h3>Comment Box</h3>");
+  comment_box_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
   emp::prefab::CommentBox box;
   comment_box_ex.AddBodyContent(box);
   UI::Div title("desktop_content");
@@ -200,7 +230,7 @@ int main()
   box.AddMobileContent(mobile);
   box.AddMobileContent("<b>String literals can also be added to boxes!</b>");
 
-  comment_box_ex.AddBodyContent("<br><hr><br><h3>Code:</h3>");
+  comment_box_ex.AddBodyContent("<br><h3>Code:</h3><hr>");
 
   const std::string comment_box_code =
     R"(
@@ -230,7 +260,8 @@ int main()
   // ------ Config Panel Example ------
   emp::prefab::Card config_panel_ex(emp::prefab::Card::Collapse::CLOSED, true);
   doc << config_panel_ex;
-  config_panel_ex.AddHeaderContent("<h3>Config Panel Example</h3>");
+  config_panel_ex.AddHeaderContent("<h3>Config Panel</h3>");
+  config_panel_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
 
   // apply configuration query params and config files to Config
   auto specs = emp::ArgManager::make_builtin_specs(&cfg);
@@ -243,7 +274,7 @@ int main()
   config_panel.Setup();
   config_panel_ex.AddBodyContent(config_panel.GetDiv());
 
-  config_panel_ex.AddBodyContent("<br><hr><br><h3>Code: </h3>");
+  config_panel_ex.AddBodyContent("<br><h3>Code:</h3><hr>");
 
   const std::string cp_code =
     R"(
@@ -279,7 +310,8 @@ int main()
   // ------ FontAwesome Icon Example ------
   emp::prefab::Card fa_icon_ex(emp::prefab::Card::Collapse::CLOSED, true);
   doc << fa_icon_ex;
-  fa_icon_ex.AddHeaderContent("<h3>FontAwesome Icon Example</h3>");
+  fa_icon_ex.AddHeaderContent("<h3>FontAwesome Icon</h3>");
+  fa_icon_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
 
   UI::Div toggleIcons;
   fa_icon_ex.AddBodyContent(toggleIcons);
@@ -296,9 +328,9 @@ int main()
   code.SetCSS("margin-left", "15px");
   up.SetCSS("margin-left", "15px");
 
-  fa_icon_ex.AddBodyContent("<br>More icons <a href=\"https://fontawesome.com/v4.7.0/icons/\">here</a><br>");
+  fa_icon_ex.AddBodyContent("<br>More icons <a href=\"https://fontawesome.com/v4.7.0/icons/\" target=\"_blank\">here</a><br>");
 
-  fa_icon_ex.AddBodyContent("<br><hr><br><h3>Code:</h3>");
+  fa_icon_ex.AddBodyContent("<br><br><h3>Code:</h3><hr>");
 
   const std::string icon_code =
     R"(
@@ -341,11 +373,12 @@ int main()
   // ------ Loading Icon Example ------
   emp::prefab::Card loading_icon_ex(emp::prefab::Card::Collapse::CLOSED, true);
   doc << loading_icon_ex;
-  loading_icon_ex.AddHeaderContent("<h3>Loading Icon Example</h3>");
+  loading_icon_ex.AddHeaderContent("<h3>Loading Icon</h3>");
+  loading_icon_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
   emp::prefab::LoadingIcon spinner;
   loading_icon_ex.AddBodyContent(spinner);
 
-  loading_icon_ex.AddBodyContent("<br><hr><br><h3>Code:</h3>");
+  loading_icon_ex.AddBodyContent("<br><br><h3>Code:</h3><hr>");
   const std::string loading_code = 
     R"(
       #include "web/web.h"
@@ -371,7 +404,8 @@ int main()
   // ------ Loading Modal Example ------
   emp::prefab::Card loading_modal_ex(emp::prefab::Card::Collapse::CLOSED, true);
   doc << loading_modal_ex;
-  loading_modal_ex.AddHeaderContent("<h3>Loading Modal Example</h3>");
+  loading_modal_ex.AddHeaderContent("<h3>Loading Modal</h3>");
+  loading_modal_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
 
   loading_modal_ex.AddBodyContent("<p>Click button to show loading modal. It will close automatically after a few seconds.</p>");
   UI::Button loading_modal_demo([](){emscripten_run_script("DemoLoadingModal();");}, "Show Loading Modal");
@@ -380,7 +414,7 @@ int main()
     "class", "btn btn-info"
   );
 
-  loading_modal_ex.AddBodyContent("<br><hr><br><h3>Code:</h3>");
+  loading_modal_ex.AddBodyContent("<br><br><br><h3>Code:</h3><hr>");
   const std::string loading_modal_code =
     R"(
       #include "web/web.h"
@@ -421,7 +455,8 @@ int main()
   // ------ Modal Example ------
   emp::prefab::Card modal_ex(emp::prefab::Card::Collapse::CLOSED, true);
   doc << modal_ex;
-  modal_ex.AddHeaderContent("<h3>Modal Example</h3>");
+  modal_ex.AddHeaderContent("<h3>Modal</h3>");
+  modal_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
   emp::prefab::Modal modal;
   modal_ex.AddBodyContent(modal);
 
@@ -441,7 +476,7 @@ int main()
   modal_btn.SetAttr("class", "btn btn-info");
   modal.AddButton(modal_btn);
 
-  modal_ex.AddBodyContent("<br><hr><br><h3>Code:</h3>");
+  modal_ex.AddBodyContent("<br><br><br><h3>Code:</h3><hr>");
   const std::string modal_code =
     R"(
       #include "web/web.h"
@@ -477,19 +512,20 @@ int main()
   // ------ Toggle Switch Example ------
   emp::prefab::Card toggle_switch_ex(emp::prefab::Card::Collapse::CLOSED, true);
   doc << toggle_switch_ex;
-  toggle_switch_ex.AddHeaderContent("<h3>Toggle Switch Example</h3>");
+  toggle_switch_ex.AddHeaderContent("<h3>Toggle Switch</h3>");
+  toggle_switch_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
 
-  emp::prefab::ToggleSwitch on_switch([](std::string val){}, "checkbox", "Switch Defult On", true);
+  emp::prefab::ToggleSwitch on_switch([](std::string val){}, "Switch Defult On", true);
   toggle_switch_ex.AddBodyContent(on_switch);
 
   toggle_switch_ex.AddBodyContent("<br>");
 
-  emp::prefab::ToggleSwitch off_switch([](std::string val){}, "checkbox", NULL, false);
+  emp::prefab::ToggleSwitch off_switch([](std::string val){}, NULL, false);
   toggle_switch_ex.AddBodyContent(off_switch);
 
   off_switch.AddLabel("Switch Defult Off");
 
-  toggle_switch_ex.AddBodyContent("<br><hr><br><h3>Code:</h3>");
+  toggle_switch_ex.AddBodyContent("<br><br><br><h3>Code:</h3><hr>");
 
   const std::string toggle_code =
     R"(
@@ -500,12 +536,12 @@ int main()
       emp::web::Document doc("emp_base");
       
       int main(){
-        emp::prefab::ToggleSwitch on_switch([](std::string val){}, "checkbox", "Switch Defult On", true);
+        emp::prefab::ToggleSwitch on_switch([](std::string val){},"Switch Defult On", true);
         doc << on_switch;
 
         doc << "&ltbr&gt";
 
-        emp::prefab::ToggleSwitch off_switch([](std::string val){}, "checkbox", NULL, false);
+        emp::prefab::ToggleSwitch off_switch([](std::string val){}, NULL, false);
         doc << off_switch;
         off_switch.AddLabel("Switch Defult Off");
       }
