@@ -51,8 +51,8 @@ int main()
   // TODO: When prefab branch is merged into master, need to remove @prefab in in jsDelivr links
   const std::string styles_code = 
     R"(
-      &ltlink rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"&gt
-      &ltlink rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devosoft/Empirical@prefab/source/prefab/DefaultConfigPanelStyle.css"&gt
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devosoft/Empirical@prefab/source/prefab/DefaultConfigPanelStyle.css">
     )";
   emp::prefab::CodeBlock styles(styles_code, "html");
   doc << styles;
@@ -84,7 +84,7 @@ int main()
         doc << openCard;
         
         openCard.AddHeaderContent("Open card");
-        openCard.AddBodyContent("Open body content &ltbr&gt Glyphs &ltbr&gt Linked title");
+        openCard.AddBodyContent("Open body content <br> Glyphs <br> Linked title");
 
         openCard.SetCSS("margin-bottom", "15px");
       }
@@ -95,7 +95,7 @@ int main()
   card_ex.AddBodyContent("<p>Add to HTML file</p>");
   const std::string card_html = 
     R"(
-      &ltlink rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"&gt
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     )";
   emp::prefab::CodeBlock card_html_block(card_html, "c++");
   card_ex.AddBodyContent(card_html_block);
@@ -115,10 +115,10 @@ int main()
 
       int main(){
         const std::string inner_code = 
-          R&quot(
+          R"(
             int num = 9;
             std::cout << num << " is a square number" << std::endl;
-          )&quot;
+          ) ";
 
         emp::prefab::CodeBlock my_code(inner_code, "c++");
         doc << my_code;
@@ -133,9 +133,9 @@ int main()
   code_block_ex.AddBodyContent("<p>Add to HTML file</p>");
   const std::string cb_html = 
     R"(
-      &ltlink rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/default.min.css"&gt
-      &ltscript src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/highlight.min.js"&gt&lt/script&gt
-      &ltscript&gt hljs.initHighlightingOnLoad();&lt/script&gt    
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/default.min.css">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/highlight.min.js"></script>
+      <script> hljs.initHighlightingOnLoad();</script>    
     )";
   emp::prefab::CodeBlock cb_html_block(cb_html, "html");
   code_block_ex.AddBodyContent(cb_html_block);
@@ -145,53 +145,74 @@ int main()
   doc << collapse_ex;
   collapse_ex.AddHeaderContent("<h3>Collapse</h3>");
   collapse_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
-  UI::Div btn;
-  UI::Div content;
+  emp::prefab::CommentBox box1;
+  box1.AddContent("<h3>Box 1</h3>");
+  emp::web::Div btn1;
+  btn1.SetAttr("class", "btn btn-info");
+  btn1 << "Button 1: controls box 1";
 
-  emp::prefab::Collapse collapse(btn, content, true, "my_collapse");
-  collapse_ex.AddBodyContent(collapse.GetLinkDiv());
-  collapse_ex.AddBodyContent(collapse.GetToggleDiv());
+  emp::prefab::CommentBox box2;
+  box2.AddContent("<h3>Box 2</h3>");
+  emp::web::Div btn2;
+  btn2.SetAttr("class", "btn btn-info");
+  btn2 << "Button 2: controls box 2";
 
-  btn.SetAttr("class", "btn btn-info");
-  btn << "Click me";
-  content << "This content starts out open and has an id of 'my_collapse'.<hr>";
-  content << "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-  content.SetCSS(
-    "width", "45%",
-    "margin", "15px",
-    "border", "1px solid #ede9e8",
-    "border-radius", "5px",
-    "padding", "10px"
-  );
+  emp::prefab::CollapseCoupling collapse1(btn1, box1, true);
+  emp::prefab::CollapseCoupling collapse2(btn2, box2, true);
+
+  emp::web::Div btn3;
+  btn3.SetAttr("class", "btn btn-success");
+  btn3 << "Button 3: controls all boxes";
+
+  collapse1.AddController(btn3, true);
+  collapse2.AddController(collapse1.GetControllerDiv(1), true);
+
+  collapse_ex.AddBodyContent(collapse1.GetControllerDiv(0));
+  collapse_ex.AddBodyContent(collapse1.GetTargetDiv(0));
+  collapse_ex.AddBodyContent(collapse2.GetControllerDiv(0));
+  collapse_ex.AddBodyContent(collapse2.GetTargetDiv(0));
+  collapse_ex.AddBodyContent(collapse1.GetControllerDiv(1));
+
   collapse_ex.AddBodyContent("<br><h3>Code:</h3><hr>");
 
   const std::string collapse_code =
     R"(
       #include "web/web.h"
+      #include "web/Div.h"
+      #include "prefab/CommentBox.h"
+
       #include "prefab/Collapse.h"
       
       emp::web::Document doc("emp_base");
       
       int main(){
-        emp::web::Div btn;
-        emp::web::Div content;
+        emp::prefab::CommentBox box1;
+        box1.AddContent("<h3>Box 1</h3>");
+        emp::web::Div btn1;
+        btn1.SetAttr("class", "btn btn-info");
+        btn1 << "Button 1: controls box 1";
 
-        emp::prefab::Collapse collapse(btn, content, true, "my_collapse");
-        doc << collapse.GetLinkDiv();
-        doc << collapse.GetToggleDiv();
+        emp::prefab::CommentBox box2;
+        box2.AddContent("<h3>Box 2</h3>");
+        emp::web::Div btn2;
+        btn2.SetAttr("class", "btn btn-info");
+        btn2 << "Button 2: controls box 2";
 
-        btn << "Click me";
-        content << "This content starts out open and has an id of 'my_collapse'. &lthr&gt";
-        content << "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.";
-        
-        btn.SetAttr("class", "btn btn-info");
-        content.SetCSS(
-          "width", "45%",
-          "margin", "15px",
-          "border", "1px solid #ede9e8",
-          "border-radius", "5px",
-          "padding", "10px"
-        );
+        emp::prefab::CollapseCoupling collapse1(btn1, box1, true);
+        emp::prefab::CollapseCoupling collapse2(btn2, box2, true);
+
+        // Create a button that controls two different CollapseCoupling instances
+        emp::web::Div btn3;
+        btn3.SetAttr("class", "btn btn-success");
+        btn3 << "Button 3: controls all boxes" ;
+        collapse1.AddController(btn3, true);
+        collapse2.AddController(collapse1.GetControllerDiv(1), true);
+
+        doc << collapse1.GetControllerDiv(0);
+        doc << collapse1.GetTargetDiv(0);
+        doc << collapse2.GetControllerDiv(0);
+        doc << collapse2.GetTargetDiv(0);
+        doc << collapse1.GetControllerDiv(1);
       }
     )";
 
@@ -228,13 +249,13 @@ int main()
         doc << box;
 
         emp::web::Div title("desktop_content");
-        title << "&ltp&gt Content that shows on all screen sizes &lt/p&gt";
+        title << "<p> Content that shows on all screen sizes </p>";
         box.AddContent(title);
 
         emp::web::Element mobile("span");
-        mobile << "&ltp&gt Content that only shows on small screens. Web conponents can be added as content &lt/p&gt";
+        mobile << "<p> Content that only shows on small screens. Web conponents can be added as content </p>";
         box.AddMobileContent(mobile);
-        box.AddMobileContent("&ltb&gt String literals can also be added to box content! &lt/b&gt");
+        box.AddMobileContent("<b> String literals can also be added to box content! </b>");
       }
     )";
 
@@ -326,7 +347,7 @@ int main()
       int main(){
         emp::web::Div toggleIcons;
         doc << toggleIcons;
-        toggleIcons << "&ltp&gt Toggle Icons &lt/p&gt";
+        toggleIcons << "<p> Toggle Icons </p>";
 
         emp::prefab::FontAwesomeIcon check("fa-check-square-o");
         toggleIcons << check;
@@ -349,7 +370,7 @@ int main()
   fa_icon_ex.AddBodyContent("<p>Add to HTML file</p>");
   const std::string icon_html = 
     R"(
-      &ltlink rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"&gt
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     )";
   emp::prefab::CodeBlock icon_html_block(icon_html, "html");
   fa_icon_ex.AddBodyContent(icon_html_block);
@@ -380,7 +401,7 @@ int main()
   loading_icon_ex.AddBodyContent("<p>Add to HTML file</p>");
   const std::string loading_html = 
     R"(
-      &ltlink rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"&gt
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     )";
   emp::prefab::CodeBlock loading_html_block(loading_html, "html");
   loading_icon_ex.AddBodyContent(loading_html_block);
@@ -418,20 +439,20 @@ int main()
   // TODO: When prefab branch is merged into master, need to remove @prefab in in jsDelivr links
   const std::string loading_modal_html =
     R"(
-      &lthtml&gt
-      &lthead&gt
-        &ltlink rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"&gt
-        &ltscript src="jquery-1.11.2.min.js&gt&lt/script&gt
-        &ltscript src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"&gt&lt/script&gt
-        &ltscript src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"&gt&lt/script&gt
-        &ltlink rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devosoft/Empirical@prefab/source/prefab/DefaultConfigPanelStyle.css"&gt
-      &lt/head&gt
+      <html>
+      <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+        <script src="jquery-1.11.2.min.js></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devosoft/Empirical@prefab/source/prefab/DefaultConfigPanelStyle.css">
+      </head>
 
-      &ltbody&gt
-        &ltscript src="https://cdn.jsdelivr.net/gh/devosoft/Empirical@prefab/source/prefab/LoadingModal.js"&gt&lt/script&gt
-        &lt!-- Rest of web page --&gt
-      &lt/body&gt
-      &lt/html&gt
+      <body>
+        <script src="https://cdn.jsdelivr.net/gh/devosoft/Empirical@prefab/source/prefab/LoadingModal.js"></script>
+        <!-- Rest of web page -->
+      </body>
+      </html>
     )";
   emp::prefab::CodeBlock loading_modal_code_block_html(loading_modal_html, "html");
   loading_modal_ex.AddBodyContent(loading_modal_code_block_html);
@@ -473,7 +494,7 @@ int main()
         emp::prefab::Modal modal;
         doc << modal;
 
-        modal.AddHeaderContent("&lth3&gtModal Header Section&lt/h3&gt");
+        modal.AddHeaderContent("<h3>Modal Header Section</h3>");
         modal.AddBodyContent("This is the content of the modal");
 
         modal.AddFooterContent("Modal Footer Section");
@@ -523,7 +544,7 @@ int main()
         emp::prefab::ToggleSwitch on_switch([](std::string val){},"Switch Defult On", true);
         doc << on_switch;
 
-        doc << "&ltbr&gt";
+        doc << "<br>";
 
         emp::prefab::ToggleSwitch off_switch([](std::string val){}, NULL, false);
         doc << off_switch;
@@ -537,7 +558,7 @@ int main()
   toggle_switch_ex.AddBodyContent("<p>Add to HTML file</p>");
   const std::string toggle_html = 
     R"(
-      &ltlink rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"&gt
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     )";
   emp::prefab::CodeBlock toggle_html_block(toggle_html, "html");
   toggle_switch_ex.AddBodyContent(toggle_html_block);
