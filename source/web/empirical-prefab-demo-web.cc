@@ -140,6 +140,8 @@ int main()
   emp::prefab::CodeBlock cb_html_block(cb_html, "html");
   code_block_ex.AddBodyContent(cb_html_block);
 
+  code_block_ex.AddBodyContent("<p>NOTE: A list of all languages supported by HighlightJS can be found <a href=\"https://highlightjs.org/static/demo/\" target=\"_blank\">here</a>");
+
   // ------ Collapse Example ------
   emp::prefab::Card collapse_ex(emp::prefab::Card::Collapse::CLOSED, true);
   doc << collapse_ex;
