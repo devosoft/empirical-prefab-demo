@@ -58,12 +58,12 @@ int main()
   doc << styles;
 
   // ------ Card Example ------
-  emp::prefab::Card card_ex(emp::prefab::Card::Collapse::CLOSED, true);
+  emp::prefab::Card card_ex("INIT_CLOSED", true);
   doc << card_ex;
   card_ex.AddHeaderContent("<h3>Card</h3>");
   card_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
   // Collapsible Card, default open
-  emp::prefab::Card openCard(emp::prefab::Card::Collapse::OPEN, true);
+  emp::prefab::Card openCard("INIT_OPEN", true);
   card_ex.AddBodyContent(openCard);
   // Header content with bootstrap link properties
   openCard.AddHeaderContent("Open card");
@@ -80,7 +80,7 @@ int main()
       emp::web::Document doc("emp_base");
 
       int main(){
-        emp::prefab::Card openCard(emp::prefab::Card::Collapse::OPEN, true);
+        emp::prefab::Card openCard("INIT_OPEN", true);
         doc << openCard;
         
         openCard.AddHeaderContent("Open card");
@@ -101,7 +101,7 @@ int main()
   card_ex.AddBodyContent(card_html_block);
 
   // ------ Code Block Example ------
-  emp::prefab::Card code_block_ex(emp::prefab::Card::Collapse::CLOSED, true);
+  emp::prefab::Card code_block_ex("INIT_CLOSED", true);
   doc << code_block_ex;
   code_block_ex.AddHeaderContent("<h3>Code Block </h1");
   code_block_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
@@ -135,7 +135,7 @@ int main()
     R"(
       <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/default.min.css">
       <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/highlight.min.js"></script>
-      <script> hljs.initHighlightingOnLoad();</script>    
+      <script src="https://cdn.jsdelivr.net/gh/devosoft/Empirical@prefab/source/prefab/HighlightJS.js"></script>    
     )";
   emp::prefab::CodeBlock cb_html_block(cb_html, "html");
   code_block_ex.AddBodyContent(cb_html_block);
@@ -143,7 +143,7 @@ int main()
   code_block_ex.AddBodyContent("<p>NOTE: A list of all languages supported by HighlightJS can be found <a href=\"https://highlightjs.org/static/demo/\" target=\"_blank\">here</a>");
 
   // ------ Collapse Example ------
-  emp::prefab::Card collapse_ex(emp::prefab::Card::Collapse::CLOSED, true);
+  emp::prefab::Card collapse_ex("INIT_CLOSED", true);
   doc << collapse_ex;
   collapse_ex.AddHeaderContent("<h3>Collapse</h3>");
   collapse_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
@@ -175,7 +175,7 @@ int main()
   collapse_ex.AddBodyContent(collapse2.GetTargetDiv(0));
   collapse_ex.AddBodyContent(collapse1.GetControllerDiv(1));
 
-  collapse_ex.AddBodyContent("<br><h3>Code:</h3><hr>");
+  collapse_ex.AddBodyContent("<br><br><h3>Code:</h3><hr>");
 
   const std::string collapse_code =
     R"(
@@ -222,20 +222,15 @@ int main()
   collapse_ex.AddBodyContent(collapse_code_block);
 
   // ------ Comment Box Example ------
-  emp::prefab::Card comment_box_ex(emp::prefab::Card::Collapse::CLOSED, true);
+  emp::prefab::Card comment_box_ex("INIT_CLOSED", true);
   doc << comment_box_ex;
   comment_box_ex.AddHeaderContent("<h3>Comment Box</h3>");
   comment_box_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
   emp::prefab::CommentBox box;
   comment_box_ex.AddBodyContent(box);
   UI::Div title("desktop_content");
-  title << "<p>Content that shows on all screen sizes</p>";
+  title << "<p>Content for comment box</p>";
   box.AddContent(title);
-  UI::Element mobile("span");
-  mobile << "<p>Content that only shows on small screens <br>Web conponents can be added as content</p>";
-  mobile << "<hr>";
-  box.AddMobileContent(mobile);
-  box.AddMobileContent("<b>String literals can also be added to boxes!</b>");
 
   comment_box_ex.AddBodyContent("<br><h3>Code:</h3><hr>");
 
@@ -251,13 +246,8 @@ int main()
         doc << box;
 
         emp::web::Div title("desktop_content");
-        title << "<p> Content that shows on all screen sizes </p>";
+        title << "<p> Content for comment box</p>";
         box.AddContent(title);
-
-        emp::web::Element mobile("span");
-        mobile << "<p> Content that only shows on small screens. Web conponents can be added as content </p>";
-        box.AddMobileContent(mobile);
-        box.AddMobileContent("<b> String literals can also be added to box content! </b>");
       }
     )";
 
@@ -265,7 +255,7 @@ int main()
   comment_box_ex.AddBodyContent(comment_box_code_block);
 
   // ------ Config Panel Example ------
-  emp::prefab::Card config_panel_ex(emp::prefab::Card::Collapse::CLOSED, true);
+  emp::prefab::Card config_panel_ex("INIT_CLOSED", true);
   doc << config_panel_ex;
   config_panel_ex.AddHeaderContent("<h3>Config Panel</h3>");
   config_panel_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
@@ -315,7 +305,7 @@ int main()
   config_panel_ex.AddBodyContent(cp_code_block);
 
   // ------ FontAwesome Icon Example ------
-  emp::prefab::Card fa_icon_ex(emp::prefab::Card::Collapse::CLOSED, true);
+  emp::prefab::Card fa_icon_ex("INIT_CLOSED", true);
   doc << fa_icon_ex;
   fa_icon_ex.AddHeaderContent("<h3>FontAwesome Icon</h3>");
   fa_icon_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
@@ -378,7 +368,7 @@ int main()
   fa_icon_ex.AddBodyContent(icon_html_block);
 
   // ------ Loading Icon Example ------
-  emp::prefab::Card loading_icon_ex(emp::prefab::Card::Collapse::CLOSED, true);
+  emp::prefab::Card loading_icon_ex("INIT_CLOSED", true);
   doc << loading_icon_ex;
   loading_icon_ex.AddHeaderContent("<h3>Loading Icon</h3>");
   loading_icon_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
@@ -409,7 +399,7 @@ int main()
   loading_icon_ex.AddBodyContent(loading_html_block);
 
   // ------ Loading Modal Example ------
-  emp::prefab::Card loading_modal_ex(emp::prefab::Card::Collapse::CLOSED, true);
+  emp::prefab::Card loading_modal_ex("INIT_CLOSED", true);
   doc << loading_modal_ex;
   loading_modal_ex.AddHeaderContent("<h3>Loading Modal</h3>");
   loading_modal_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
@@ -460,7 +450,7 @@ int main()
   loading_modal_ex.AddBodyContent(loading_modal_code_block_html);
 
   // ------ Modal Example ------
-  emp::prefab::Card modal_ex(emp::prefab::Card::Collapse::CLOSED, true);
+  emp::prefab::Card modal_ex("INIT_CLOSED", true);
   doc << modal_ex;
   modal_ex.AddHeaderContent("<h3>Modal</h3>");
   modal_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
@@ -517,7 +507,7 @@ int main()
   modal_ex.AddBodyContent(modal_code_block);
 
   // ------ Toggle Switch Example ------
-  emp::prefab::Card toggle_switch_ex(emp::prefab::Card::Collapse::CLOSED, true);
+  emp::prefab::Card toggle_switch_ex("INIT_CLOSED", true);
   doc << toggle_switch_ex;
   toggle_switch_ex.AddHeaderContent("<h3>Toggle Switch</h3>");
   toggle_switch_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
