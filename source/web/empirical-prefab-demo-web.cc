@@ -29,10 +29,10 @@ UI::Document doc("emp_base");
 
 SampleConfig cfg;
 
+emp::prefab::ConfigPanel config_panel(cfg);
+
 int main()
 {
-  emp::prefab::ConfigPanel & config_panel = *(new emp::prefab::ConfigPanel(cfg));
-
   std::cout << "Hello, console!" << std::endl;
 
   emp::web::Div empirical_info;
@@ -48,22 +48,21 @@ int main()
   doc << "<p>These prefabricated tools were created to help you quickly create interesting web applicications without being overwhelmed with the underlying HTML, CSS, and Bootstrap classes required. These tools use Empirical's web tools to provide structure for the site, and many of the prefab tools inherit from web tools so you can add your own styling and stream them into other web components in a similar way.</p>";
   doc << "<p>To uses any of these tools, you'll want to add the Bootstrap and Empirical's DefaultConfigStyle stylesheet to the head of your html file. Of course you can override the style of any of the classes in these files with your own CSS file if it is linked after these two.";
 
-  // TODO: When prefab branch is merged into master, need to remove @prefab in in jsDelivr links
   const std::string styles_code = 
     R"(
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devosoft/Empirical@prefab/source/prefab/DefaultConfigPanelStyle.css">
+      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devosoft/Empirical/source/prefab/DefaultConfigPanelStyle.css">
     )";
   emp::prefab::CodeBlock styles(styles_code, "html");
   doc << styles;
 
   // ------ Card Example ------
-  emp::prefab::Card card_ex("INIT_CLOSED", true);
+  emp::prefab::Card card_ex("INIT_CLOSED");
   doc << card_ex;
   card_ex.AddHeaderContent("<h3>Card</h3>");
   card_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
   // Collapsible Card, default open
-  emp::prefab::Card openCard("INIT_OPEN", true);
+  emp::prefab::Card openCard("INIT_OPEN");
   card_ex.AddBodyContent(openCard);
   // Header content with bootstrap link properties
   openCard.AddHeaderContent("Open card");
@@ -80,7 +79,7 @@ int main()
       emp::web::Document doc("emp_base");
 
       int main(){
-        emp::prefab::Card openCard("INIT_OPEN", true);
+        emp::prefab::Card openCard("INIT_OPEN");
         doc << openCard;
         
         openCard.AddHeaderContent("Open card");
@@ -101,7 +100,7 @@ int main()
   card_ex.AddBodyContent(card_html_block);
 
   // ------ Code Block Example ------
-  emp::prefab::Card code_block_ex("INIT_CLOSED", true);
+  emp::prefab::Card code_block_ex("INIT_CLOSED");
   doc << code_block_ex;
   code_block_ex.AddHeaderContent("<h3>Code Block </h1");
   code_block_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
@@ -135,7 +134,7 @@ int main()
     R"(
       <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/default.min.css">
       <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/highlight.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/gh/devosoft/Empirical@prefab/source/prefab/HighlightJS.js"></script>    
+      <script src="https://cdn.jsdelivr.net/gh/devosoft/Empirical/source/prefab/HighlightJS.js"></script>    
     )";
   emp::prefab::CodeBlock cb_html_block(cb_html, "html");
   code_block_ex.AddBodyContent(cb_html_block);
@@ -143,7 +142,7 @@ int main()
   code_block_ex.AddBodyContent("<p>NOTE: A list of all languages supported by HighlightJS can be found <a href=\"https://highlightjs.org/static/demo/\" target=\"_blank\">here</a>");
 
   // ------ Collapse Example ------
-  emp::prefab::Card collapse_ex("INIT_CLOSED", true);
+  emp::prefab::Card collapse_ex("INIT_CLOSED");
   doc << collapse_ex;
   collapse_ex.AddHeaderContent("<h3>Collapse</h3>");
   collapse_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
@@ -222,7 +221,7 @@ int main()
   collapse_ex.AddBodyContent(collapse_code_block);
 
   // ------ Comment Box Example ------
-  emp::prefab::Card comment_box_ex("INIT_CLOSED", true);
+  emp::prefab::Card comment_box_ex("INIT_CLOSED");
   doc << comment_box_ex;
   comment_box_ex.AddHeaderContent("<h3>Comment Box</h3>");
   comment_box_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
@@ -255,7 +254,7 @@ int main()
   comment_box_ex.AddBodyContent(comment_box_code_block);
 
   // ------ Config Panel Example ------
-  emp::prefab::Card config_panel_ex("INIT_CLOSED", true);
+  emp::prefab::Card config_panel_ex("INIT_CLOSED");
   doc << config_panel_ex;
   config_panel_ex.AddHeaderContent("<h3>Config Panel</h3>");
   config_panel_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
@@ -282,10 +281,10 @@ int main()
       
       #include "../SampleConfig.h"
 
+      emp::web::Document doc("emp_base");
+
       SampleConfig cfg;
       emp::prefab::ConfigPanel config_panel(cfg);
-
-      emp::web::Document doc("emp_base");
 
       int main(){
         // apply configuration query params and config files to SampleConfig
@@ -305,7 +304,7 @@ int main()
   config_panel_ex.AddBodyContent(cp_code_block);
 
   // ------ FontAwesome Icon Example ------
-  emp::prefab::Card fa_icon_ex("INIT_CLOSED", true);
+  emp::prefab::Card fa_icon_ex("INIT_CLOSED");
   doc << fa_icon_ex;
   fa_icon_ex.AddHeaderContent("<h3>FontAwesome Icon</h3>");
   fa_icon_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
@@ -368,7 +367,7 @@ int main()
   fa_icon_ex.AddBodyContent(icon_html_block);
 
   // ------ Loading Icon Example ------
-  emp::prefab::Card loading_icon_ex("INIT_CLOSED", true);
+  emp::prefab::Card loading_icon_ex("INIT_CLOSED");
   doc << loading_icon_ex;
   loading_icon_ex.AddHeaderContent("<h3>Loading Icon</h3>");
   loading_icon_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
@@ -399,7 +398,7 @@ int main()
   loading_icon_ex.AddBodyContent(loading_html_block);
 
   // ------ Loading Modal Example ------
-  emp::prefab::Card loading_modal_ex("INIT_CLOSED", true);
+  emp::prefab::Card loading_modal_ex("INIT_CLOSED");
   doc << loading_modal_ex;
   loading_modal_ex.AddHeaderContent("<h3>Loading Modal</h3>");
   loading_modal_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
@@ -428,7 +427,6 @@ int main()
   emp::prefab::CodeBlock loading_modal_code_block(loading_modal_code, "c++");
   loading_modal_ex.AddBodyContent(loading_modal_code_block);
   loading_modal_ex.AddBodyContent("<p>Add Loading Modal script at the top of the body section of your HTML file.</p>");
-  // TODO: When prefab branch is merged into master, need to remove @prefab in in jsDelivr links
   const std::string loading_modal_html =
     R"(
       <html>
@@ -437,11 +435,11 @@ int main()
         <script src="jquery-1.11.2.min.js></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devosoft/Empirical@prefab/source/prefab/DefaultConfigPanelStyle.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devosoft/Empirical/source/prefab/DefaultConfigPanelStyle.css">
       </head>
 
       <body>
-        <script src="https://cdn.jsdelivr.net/gh/devosoft/Empirical@prefab/source/prefab/LoadingModal.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/devosoft/Empirical/source/prefab/LoadingModal.js"></script>
         <!-- Rest of web page -->
       </body>
       </html>
@@ -450,7 +448,7 @@ int main()
   loading_modal_ex.AddBodyContent(loading_modal_code_block_html);
 
   // ------ Modal Example ------
-  emp::prefab::Card modal_ex("INIT_CLOSED", true);
+  emp::prefab::Card modal_ex("INIT_CLOSED");
   doc << modal_ex;
   modal_ex.AddHeaderContent("<h3>Modal</h3>");
   modal_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
@@ -507,7 +505,7 @@ int main()
   modal_ex.AddBodyContent(modal_code_block);
 
   // ------ Toggle Switch Example ------
-  emp::prefab::Card toggle_switch_ex("INIT_CLOSED", true);
+  emp::prefab::Card toggle_switch_ex("INIT_CLOSED");
   doc << toggle_switch_ex;
   toggle_switch_ex.AddHeaderContent("<h3>Toggle Switch</h3>");
   toggle_switch_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
