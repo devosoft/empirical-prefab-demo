@@ -29,6 +29,8 @@ UI::Document doc("emp_base");
 
 SampleConfig cfg;
 
+// TODO: Find a way to initialize config panels within main()
+// Issue #366 (https://github.com/devosoft/Empirical/issues/366)
 emp::prefab::ConfigPanel config_panel(cfg);
 
 int main()
@@ -46,12 +48,13 @@ int main()
   empirical_info << "<p style=\"display: inline-block\">This is part of <a href=\"https://github.com/devosoft/Empirical\" target=\"_blank\">Empirical</a>, a library of tools for developing efficient, reliable, and accessible scientific software.</p>";
 
   doc << "<p>These prefabricated tools were created to help you quickly create interesting web applicications without being overwhelmed with the underlying HTML, CSS, and Bootstrap classes required. These tools use Empirical's web tools to provide structure for the site, and many of the prefab tools inherit from web tools so you can add your own styling and stream them into other web components in a similar way.</p>";
-  doc << "<p>To uses any of these tools, you'll want to add the Bootstrap and Empirical's DefaultConfigStyle stylesheet to the head of your html file. Of course you can override the style of any of the classes in these files with your own CSS file if it is linked after these two.";
+  doc << "<p>To uses any of these tools, you'll want to add the Bootstrap and Empirical's DefaultPrefabStyle stylesheet to the head of your html file. Of course you can override the style of any of the classes in these files with your own CSS file if it is linked after these two.";
 
   const std::string styles_code = 
     R"(
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devosoft/Empirical/source/prefab/DefaultConfigPanelStyle.css">
+      <link rel="stylesheet/less" type="text/css" href="https://cdn.jsdelivr.net/gh/devosoft/Empirical/source/fresh-prefab/DefaultPrefabStyles.less">
+      <script src="//cdn.jsdelivr.net/npm/less" ></script>
     )";
   emp::prefab::CodeBlock styles(styles_code, "html");
   doc << styles;
