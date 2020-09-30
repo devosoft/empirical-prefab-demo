@@ -31,6 +31,7 @@ SampleConfig cfg;
 
 int main()
 {
+  // TODO: Config panel scope...
   emp::prefab::ConfigPanel & config_panel = *(new emp::prefab::ConfigPanel(cfg));
 
   std::cout << "Hello, console!" << std::endl;
