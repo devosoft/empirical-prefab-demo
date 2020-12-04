@@ -1,6 +1,6 @@
 #pragma once
 
-#include "config/config.h"
+#include "emp/config/config.hpp"
 
 EMP_BUILD_CONFIG( SampleConfig,
   GROUP(MAIN, "Global settings"),

@@ -4,24 +4,23 @@
 
 #include <iostream>
 
-#include "web/web.h"
-#include "web/Div.h"
-#include "web/Input.h"
-#include "prefab/Card.h"
-#include "prefab/CodeBlock.h"
-#include "prefab/Collapse.h"
-#include "prefab/CommentBox.h"
-#include "prefab/ConfigPanel.h"
-#include "prefab/FontAwesomeIcon.h"
-#include "prefab/LoadingIcon.h"
-#include "prefab/LoadingModal.h"
-#include "prefab/Modal.h"
-#include "prefab/ToggleSwitch.h"
+#include "emp/config/ArgManager.hpp"
+#include "emp/prefab/Card.hpp"
+#include "emp/prefab/CodeBlock.hpp"
+#include "emp/prefab/Collapse.hpp"
+#include "emp/prefab/CommentBox.hpp"
+#include "emp/prefab/ConfigPanel.hpp"
+#include "emp/prefab/FontAwesomeIcon.hpp"
+#include "emp/prefab/LoadingIcon.hpp"
+#include "emp/prefab/LoadingModal.hpp"
+#include "emp/prefab/Modal.hpp"
+#include "emp/prefab/ToggleSwitch.hpp"
+#include "emp/web/UrlParams.hpp"
+#include "emp/web/web.hpp"
+#include "emp/web/Div.hpp"
+#include "emp/web/Input.hpp"
 
-#include "../example.h"
-#include "../SampleConfig.h"
-#include "config/ArgManager.h"
-#include "web/UrlParams.h"
+#include "../SampleConfig.hpp"
 
 namespace UI = emp::web;
 
