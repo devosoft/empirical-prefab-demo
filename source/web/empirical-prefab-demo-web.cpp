@@ -271,7 +271,7 @@ int main()
 
   // setup configuration panel
   config_panel.Setup();
-  config_panel_ex.AddBodyContent(config_panel.GetDiv());
+  config_panel_ex.AddBodyContent(config_panel.GetConfigPanelDiv());
 
   config_panel_ex.AddBodyContent("<br><h3>Code:</h3><hr>");
 
