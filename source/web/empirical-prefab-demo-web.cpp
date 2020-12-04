@@ -558,4 +558,6 @@ int main()
 
 
   emp::prefab::CloseLoadingModal();
+
+  std::cout << "prefab demo setup success!" << std::endl;
 }
