@@ -43,14 +43,14 @@ int main()
   empirical_info << info_icon;
   info_icon.SetCSS(
     "margin-right", "10px",
-    "display", "inline-block" 
+    "display", "inline-block"
   );
   empirical_info << "<p style=\"display: inline-block\">This is part of <a href=\"https://github.com/devosoft/Empirical\" target=\"_blank\">Empirical</a>, a library of tools for developing efficient, reliable, and accessible scientific software.</p>";
 
   doc << "<p>These prefabricated tools were created to help you quickly create interesting web applicications without being overwhelmed with the underlying HTML, CSS, and Bootstrap classes required. These tools use Empirical's web tools to provide structure for the site, and many of the prefab tools inherit from web tools so you can add your own styling and stream them into other web components in a similar way.</p>";
   doc << "<p>To uses any of these tools, you'll want to add the Bootstrap and Empirical's DefaultPrefabStyle stylesheet to the head of your html file. Of course you can override the style of any of the classes in these files with your own CSS file if it is linked after these two.";
 
-  const std::string styles_code = 
+  const std::string styles_code =
     R"(
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
       <link rel="stylesheet/less" type="text/css" href="https://cdn.jsdelivr.net/gh/devosoft/Empirical/source/fresh-prefab/DefaultPrefabStyles.less">
@@ -73,7 +73,7 @@ int main()
   openCard.SetCSS("margin-bottom", "15px");
 
   card_ex.AddBodyContent("<br><h3>Code:</h3><hr>");
-  
+
   const std::string card_code =
     R"(
       #include "web/web.h"
@@ -84,7 +84,7 @@ int main()
       int main(){
         emp::prefab::Card openCard("INIT_OPEN");
         doc << openCard;
-        
+
         openCard.AddHeaderContent("Open card");
         openCard.AddBodyContent("Open body content <br> Glyphs <br> Linked title");
 
@@ -95,7 +95,7 @@ int main()
   emp::prefab::CodeBlock card_code_block(card_code, "c++");
   card_ex.AddBodyContent(card_code_block);
   card_ex.AddBodyContent("<p>Add to HTML file</p>");
-  const std::string card_html = 
+  const std::string card_html =
     R"(
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     )";
@@ -108,7 +108,7 @@ int main()
   code_block_ex.AddHeaderContent("<h3>Code Block </h1");
   code_block_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
 
-  const std::string code_block_code = 
+  const std::string code_block_code =
     R"(
       #include "web/web.h"
       #include "prefab/CodeBlock.h"
@@ -116,7 +116,7 @@ int main()
       emp::web::Document doc("emp_base");
 
       int main(){
-        const std::string inner_code = 
+        const std::string inner_code =
           R"(
             int num = 9;
             std::cout << num << " is a square number" << std::endl;
@@ -133,11 +133,11 @@ int main()
   code_block_ex.AddBodyContent("<p>This code bock is built using the code displayed within.</p>");
 
   code_block_ex.AddBodyContent("<p>Add to HTML file</p>");
-  const std::string cb_html = 
+  const std::string cb_html =
     R"(
       <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/default.min.css">
       <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/highlight.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/gh/devosoft/Empirical/source/prefab/HighlightJS.js"></script>    
+      <script src="https://cdn.jsdelivr.net/gh/devosoft/Empirical/source/prefab/HighlightJS.js"></script>
     )";
   emp::prefab::CodeBlock cb_html_block(cb_html, "html");
   code_block_ex.AddBodyContent(cb_html_block);
@@ -186,9 +186,9 @@ int main()
       #include "prefab/CommentBox.h"
 
       #include "prefab/Collapse.h"
-      
+
       emp::web::Document doc("emp_base");
-      
+
       int main(){
         emp::prefab::CommentBox box1;
         box1.AddContent("<h3>Box 1</h3>");
@@ -240,7 +240,7 @@ int main()
     R"(
       #include "web/web.h"
       #include "prefab/CommentBox.h"
-      
+
       emp::web::Document doc("emp_base");
 
       int main(){
@@ -281,7 +281,7 @@ int main()
       #include "prefab/ConfigPanel.h"
       #include "config/ArgManager.h"
       #include "web/UrlParams.h"
-      
+
       #include "../SampleConfig.h"
 
       emp::web::Document doc("emp_base");
@@ -335,9 +335,9 @@ int main()
     R"(
       #include "web/web.h"
       #include "prefab/FontAwesomeIcon.h"
-      
+
       emp::web::Document doc("emp_base");
-      
+
       int main(){
         emp::web::Div toggleIcons;
         doc << toggleIcons;
@@ -362,7 +362,7 @@ int main()
   emp::prefab::CodeBlock icon_code_block(icon_code, "c++");
   fa_icon_ex.AddBodyContent(icon_code_block);
   fa_icon_ex.AddBodyContent("<p>Add to HTML file</p>");
-  const std::string icon_html = 
+  const std::string icon_html =
     R"(
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     )";
@@ -378,7 +378,7 @@ int main()
   loading_icon_ex.AddBodyContent(spinner);
 
   loading_icon_ex.AddBodyContent("<br><br><h3>Code:</h3><hr>");
-  const std::string loading_code = 
+  const std::string loading_code =
     R"(
       #include "web/web.h"
       #include "prefab/LoadingIcon.h"
@@ -393,7 +393,7 @@ int main()
   emp::prefab::CodeBlock loading_code_block(loading_code, "c++");
   loading_icon_ex.AddBodyContent(loading_code_block);
   loading_icon_ex.AddBodyContent("<p>Add to HTML file</p>");
-  const std::string loading_html = 
+  const std::string loading_html =
     R"(
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     )";
@@ -418,7 +418,7 @@ int main()
     R"(
       #include "web/web.h"
       #include "prefab/LoadingModal.h"
-      
+
       emp::web::Document doc("emp_base");
 
       int main(){
@@ -480,7 +480,7 @@ int main()
       #include "web/web.h"
       #include "web/Button.h"
       #include "prefab/Modal.h"
-      
+
       emp::web::Document doc("emp_base");
 
       int main(){
@@ -530,9 +530,9 @@ int main()
       #include "web/web.h"
       #include "web/Input.h"
       #include "prefab/ToggleSwitch.h"
-      
+
       emp::web::Document doc("emp_base");
-      
+
       int main(){
         emp::prefab::ToggleSwitch on_switch([](std::string val){},"Switch Defult On", true);
         doc << on_switch;
@@ -549,7 +549,7 @@ int main()
   toggle_switch_ex.AddBodyContent(toggle_code_block);
 
   toggle_switch_ex.AddBodyContent("<p>Add to HTML file</p>");
-  const std::string toggle_html = 
+  const std::string toggle_html =
     R"(
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     )";
