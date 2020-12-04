@@ -9,7 +9,7 @@ FLAGS = -std=c++17 -pthread -Wall -Wno-unused-function -Wno-unused-private-field
 
 default: test
 
-test-%: %.cc
+test-%: %.cpp
 	$(CXX) $(FLAGS) $< -o $@.out
 	# execute test
 	./$@.out

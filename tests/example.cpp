@@ -2,7 +2,7 @@
 
 #include "Catch/single_include/catch2/catch.hpp"
 
-#include "example.h"
+#include "example.hpp"
 
 TEST_CASE("Test example")
 {

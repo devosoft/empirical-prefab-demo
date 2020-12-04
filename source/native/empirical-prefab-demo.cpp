@@ -4,10 +4,10 @@
 
 #include <iostream>
 
-#include "base/vector.h"
-#include "config/command_line.h"
+#include "emp/base/vector.hpp"
+#include "emp/config/command_line.hpp"
 
-#include "../example.h"
+#include "../example.hpp"
 
 // This is the main function for the NATIVE version of Empirical Prefab Demo.
 
