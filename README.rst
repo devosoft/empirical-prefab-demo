@@ -3,8 +3,8 @@ Empirical Prefab Demo
 =====================
 
 
-.. image:: https://img.shields.io/travis/devosoft/empirical-prefab-demo.svg
-        :target: https://travis-ci.org/devosoft/empirical-prefab-demo
+.. image:: https://github.com/devosoft/empirical-prefab-demo/workflows/CI/badge.svg
+        :target: https://github.com/devosoft/empirical-prefab-demo/actions?query=workflow%3ACI
 
 .. image:: https://readthedocs.org/projects/empirical-prefab-demo/badge/?version=latest
         :target: https://empirical-prefab-demo.readthedocs.io/en/latest/?badge=latest
