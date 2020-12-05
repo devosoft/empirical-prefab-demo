@@ -39,7 +39,7 @@ jobs:
         |
           cd web
           git init
-          git remote add origin https://${{ github.token }}@github.com/devosoft/empirical-prefab-demo.git > /dev/null 2>&1
+          git remote add origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/devosoft/empirical-prefab-demo.git > /dev/null 2>&1
           git checkout -b gh-pages
           git add .
           git commit --message "GitHub Action ${GITHUB_ACTION}"
