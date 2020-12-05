@@ -22,8 +22,8 @@ void loading_icon_example( emp::web::Document& doc ) {
   loading_icon_ex.AddBodyContent("<br><br><h3>Code:</h3><hr>");
   const std::string loading_code =
     R"(
-      #include "web/web.h"
-      #include "prefab/LoadingIcon.h"
+      #include "emp/prefab/LoadingIcon.hpp"
+      #include "emp/web/web.hpp"
 
       emp::web::Document doc("emp_base");
 

@@ -24,8 +24,8 @@ void comment_box_example( emp::web::Document& doc ) {
 
   const std::string comment_box_code =
     R"(
-      #include "web/web.h"
-      #include "prefab/CommentBox.h"
+      #include "emp/prefab/CommentBox.hpp"
+      #include "emp/web/web.hpp"
 
       emp::web::Document doc("emp_base");
 

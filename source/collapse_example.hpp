@@ -48,9 +48,9 @@ void collapse_example( emp::web::Document& doc ) {
 
   const std::string collapse_code =
     R"(
-      #include "web/web.h"
-      #include "web/Div.h"
-      #include "prefab/CommentBox.h"
+      #include "emp/prefab/CommentBox.hpp"
+      #include "emp/web/web.hpp"
+      #include "emp/web/Div.hpp"
 
       #include "prefab/Collapse.h"
 

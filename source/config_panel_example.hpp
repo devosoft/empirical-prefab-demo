@@ -38,10 +38,10 @@ void config_panel_example( emp::web::Document& doc ) {
 
   const std::string cp_code =
     R"(
-      #include "web/web.h"
-      #include "prefab/ConfigPanel.h"
-      #include "config/ArgManager.h"
-      #include "web/UrlParams.h"
+      #include "emp/config/ArgManager.hpp"
+      #include "emp/prefab/ConfigPanel.hpp"
+      #include "emp/web/UrlParams.hpp"
+      #include "emp/web/web.hpp"
 
       #include "../SampleConfig.h"
 
@@ -60,7 +60,7 @@ void config_panel_example( emp::web::Document& doc ) {
 
         // setup configuration panel
         config_panel.Setup();
-        doc << config_panel.GetDiv();
+        doc << config_panel.GetConfigPanelDiv();
       }
     )";
 

@@ -39,9 +39,9 @@ void modal_example( emp::web::Document& doc ) {
   modal_ex.AddBodyContent("<br><br><br><h3>Code:</h3><hr>");
   const std::string modal_code =
     R"(
-      #include "web/web.h"
-      #include "web/Button.h"
-      #include "prefab/Modal.h"
+      #include "emp/prefab/Modal.hpp"
+      #include "emp/web/Button.hpp"
+      #include "emp/web/web.hpp"
 
       emp::web::Document doc("emp_base");
 

@@ -16,8 +16,8 @@ void code_block_example( emp::web::Document& doc ) {
 
   const std::string code_block_code =
     R"(
-      #include "web/web.h"
-      #include "prefab/CodeBlock.h"
+      #include "emp/prefab/CodeBlock.hpp"
+      #include "emp/web/web.hpp"
 
       emp::web::Document doc("emp_base");
 

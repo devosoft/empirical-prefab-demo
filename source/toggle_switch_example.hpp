@@ -29,9 +29,9 @@ void toggle_switch_example(emp::web::Document& doc ) {
 
   const std::string toggle_code =
     R"(
-      #include "web/web.h"
-      #include "web/Input.h"
-      #include "prefab/ToggleSwitch.h"
+      #include "emp/prefab/ToggleSwitch.hpp"
+      #include "emp/web/Input.hpp"
+      #include "emp/web/web.hpp"
 
       emp::web::Document doc("emp_base");
 

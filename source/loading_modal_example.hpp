@@ -27,8 +27,8 @@ void loading_modal_example( emp::web::Document& doc ) {
   loading_modal_ex.AddBodyContent("<br><br><br><h3>Code:</h3><hr>");
   const std::string loading_modal_code =
     R"(
-      #include "web/web.h"
-      #include "prefab/LoadingModal.h"
+      #include "emp/prefab/LoadingModal.hpp"
+      #include "emp/web/web.hpp"
 
       emp::web::Document doc("emp_base");
 

@@ -37,8 +37,8 @@ void font_awesome_icon_example( emp::web::Document& doc ) {
 
   const std::string icon_code =
     R"(
-      #include "web/web.h"
-      #include "prefab/FontAwesomeIcon.h"
+      #include "emp/prefab/FontAwesomeIcon.hpp"
+      #include "emp/web/web.hpp"
 
       emp::web::Document doc("emp_base");
 

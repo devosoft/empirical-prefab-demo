@@ -25,8 +25,8 @@ void card_example( emp::web::Document& doc ) {
 
   const std::string card_code =
     R"(
-      #include "web/web.h"
-      #include "prefab/Card.h"
+      #include "emp/prefab/Card.hpp"
+      #include "emp/web/web.hpp"
 
       emp::web::Document doc("emp_base");
 
