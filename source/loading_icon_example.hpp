@@ -34,12 +34,5 @@ void loading_icon_example( emp::web::Document& doc ) {
     )";
   emp::prefab::CodeBlock loading_code_block(loading_code, "c++");
   loading_icon_ex.AddBodyContent(loading_code_block);
-  loading_icon_ex.AddBodyContent("<p>Add to HTML file</p>");
-  const std::string loading_html =
-    R"(
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    )";
-  emp::prefab::CodeBlock loading_html_block(loading_html, "html");
-  loading_icon_ex.AddBodyContent(loading_html_block);
 
 }

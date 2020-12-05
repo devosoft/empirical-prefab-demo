@@ -25,8 +25,13 @@ void empirical_info( emp::web::Document& doc ) {
   const std::string styles_code =
     R"(
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/default.min.css">
       <link rel="stylesheet/less" type="text/css" href="https://cdn.jsdelivr.net/gh/devosoft/Empirical@master/include/emp/prefab/DefaultPrefabStyles.less">
-      <script src="//cdn.jsdelivr.net/npm/less" ></script>
+      <script src="https://cdn.jsdelivr.net/npm/less" ></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/highlight.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/gh/devosoft/Empirical/source/prefab/HighlightJS.js"></script>
     )";
   emp::prefab::CodeBlock styles(styles_code, "html");
   doc << styles;

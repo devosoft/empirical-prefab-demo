@@ -50,12 +50,4 @@ void toggle_switch_example(emp::web::Document& doc ) {
   emp::prefab::CodeBlock toggle_code_block(toggle_code, "c++");
   toggle_switch_ex.AddBodyContent(toggle_code_block);
 
-  toggle_switch_ex.AddBodyContent("<p>Add to HTML file</p>");
-  const std::string toggle_html =
-    R"(
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    )";
-  emp::prefab::CodeBlock toggle_html_block(toggle_html, "html");
-  toggle_switch_ex.AddBodyContent(toggle_html_block);
-
 }

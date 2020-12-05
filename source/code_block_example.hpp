@@ -41,9 +41,7 @@ void code_block_example( emp::web::Document& doc ) {
   code_block_ex.AddBodyContent("<p>Add to HTML file</p>");
   const std::string cb_html =
     R"(
-      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/default.min.css">
-      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/highlight.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/gh/devosoft/Empirical/source/prefab/HighlightJS.js"></script>
+
     )";
   emp::prefab::CodeBlock cb_html_block(cb_html, "html");
   code_block_ex.AddBodyContent(cb_html_block);

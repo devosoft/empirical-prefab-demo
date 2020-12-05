@@ -43,12 +43,5 @@ void card_example( emp::web::Document& doc ) {
 
   emp::prefab::CodeBlock card_code_block(card_code, "c++");
   card_ex.AddBodyContent(card_code_block);
-  card_ex.AddBodyContent("<p>Add to HTML file</p>");
-  const std::string card_html =
-    R"(
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    )";
-  emp::prefab::CodeBlock card_html_block(card_html, "c++");
-  card_ex.AddBodyContent(card_html_block);
 
 }
