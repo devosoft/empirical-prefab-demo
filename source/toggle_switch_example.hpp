@@ -15,12 +15,20 @@ void toggle_switch_example(emp::web::Document& doc ) {
   toggle_switch_ex.AddHeaderContent("<h3>Toggle Switch</h3>");
   toggle_switch_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
 
-  emp::prefab::ToggleSwitch on_switch([](std::string val){}, "Switch Defult On", true);
+  emp::prefab::ToggleSwitch on_switch(
+    [](std::string val){ std::cout << "callback " << val << std::endl; },
+    "Switch Defult On",
+    true
+  );
   toggle_switch_ex.AddBodyContent(on_switch);
 
   toggle_switch_ex.AddBodyContent("<br>");
 
-  emp::prefab::ToggleSwitch off_switch([](std::string val){}, NULL, false);
+  emp::prefab::ToggleSwitch off_switch(
+    [](std::string val){ std::cout << "callback " << val << std::endl; },
+    "",
+    false
+  );
   toggle_switch_ex.AddBodyContent(off_switch);
 
   off_switch.AddLabel("Switch Defult Off");
@@ -36,12 +44,20 @@ void toggle_switch_example(emp::web::Document& doc ) {
       emp::web::Document doc("emp_base");
 
       int main(){
-        emp::prefab::ToggleSwitch on_switch([](std::string val){},"Switch Defult On", true);
+        emp::prefab::ToggleSwitch on_switch(
+          [](std::string val){ std::cout << "callback " << val << std::endl; },
+          "Switch Defult On",
+          true
+        );
         doc << on_switch;
 
         doc << "<br>";
 
-        emp::prefab::ToggleSwitch off_switch([](std::string val){}, NULL, false);
+        emp::prefab::ToggleSwitch off_switch(
+          [](std::string val){ std::cout << "callback " << val << std::endl; },
+          "",
+          false
+        );
         doc << off_switch;
         off_switch.AddLabel("Switch Defult Off");
       }
