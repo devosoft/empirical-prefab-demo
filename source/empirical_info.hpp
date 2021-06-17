@@ -29,7 +29,7 @@ void empirical_info( emp::web::Document& doc ) {
       <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/styles/default.min.css">
       <link rel="stylesheet/less" type="text/css" href="https://cdn.jsdelivr.net/gh/devosoft/Empirical@master/include/emp/prefab/DefaultPrefabStyles.less">
       <script src="https://cdn.jsdelivr.net/npm/less" ></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js">
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/highlight.min.js"></script>
       <script src="https://cdn.jsdelivr.net/gh/devosoft/Empirical/source/prefab/HighlightJS.js"></script>
     )";
