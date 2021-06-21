@@ -11,8 +11,6 @@ Empirical Prefab Demo
         :alt: Documentation Status
 
 
-Prefab demo
-
 Check out the live in-browser web app at `https://devosoft.github.io/empirical-prefab-demo`_.
 
 
