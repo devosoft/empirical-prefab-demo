@@ -32,7 +32,10 @@ void readout_panel_example( emp::web::Document& doc ) {
   );
 
   readout_panel_ex << values;
-  readout_panel_ex << UI::Button([](){ ++counter; }, "Add one to counter");
+  emp::web::Button adder([](){ ++counter; }, "Add one to counter");
+  adder.SetAttr("class", "btn btn-primary");
+  readout_panel_ex << adder;
+  readout_panel_ex << "<br><br><h3>Code:</h3><hr>";
 
   const std::string readout_panel_code =
     R"(
@@ -60,8 +63,9 @@ void readout_panel_example( emp::web::Document& doc ) {
         );
 
         doc << values;
-        doc << emp::web::Button([](){ ++counter; }, "Add one to counter");
-
+        emp::web::Button adder([](){ ++counter; }, "Add one to counter")
+        adder.SetAttr("class", "btn");
+        readout_panel_ex << adder;
       }
     )";
 

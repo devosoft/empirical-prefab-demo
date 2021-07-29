@@ -14,10 +14,10 @@ void font_awesome_icon_example( emp::web::Document& doc ) {
   emp::prefab::Card fa_icon_ex("INIT_CLOSED");
   doc << fa_icon_ex;
   fa_icon_ex.AddHeaderContent("<h3>FontAwesome Icon</h3>");
-  fa_icon_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
+  fa_icon_ex << "<h3>Live Demo:</h3><hr>";
 
   emp::web::Div toggleIcons;
-  fa_icon_ex.AddBodyContent(toggleIcons);
+  fa_icon_ex << toggleIcons;
   emp::prefab::FontAwesomeIcon check("fa-check-square-o");
   toggleIcons << check;
   emp::prefab::FontAwesomeIcon dots("fa-ellipsis-v");
@@ -31,9 +31,9 @@ void font_awesome_icon_example( emp::web::Document& doc ) {
   code.SetCSS("margin-left", "15px");
   up.SetCSS("margin-left", "15px");
 
-  fa_icon_ex.AddBodyContent("<br>More icons <a href=\"https://fontawesome.com/v4.7.0/icons/\" target=\"_blank\">here</a><br>");
+  fa_icon_ex << "<br>More icons <a href=\"https://fontawesome.com/v4.7.0/icons/\" target=\"_blank\">here</a><br>";
 
-  fa_icon_ex.AddBodyContent("<br><br><h3>Code:</h3><hr>");
+  fa_icon_ex << "<br><br><h3>Code:</h3><hr>";
 
   const std::string icon_code =
     R"(
@@ -64,13 +64,13 @@ void font_awesome_icon_example( emp::web::Document& doc ) {
     )";
 
   emp::prefab::CodeBlock icon_code_block(icon_code, "c++");
-  fa_icon_ex.AddBodyContent(icon_code_block);
-  fa_icon_ex.AddBodyContent("<p>Add to HTML file</p>");
+  fa_icon_ex << icon_code_block;
+  fa_icon_ex << "<p>Add to HTML file</p>";
   const std::string icon_html =
     R"(
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     )";
   emp::prefab::CodeBlock icon_html_block(icon_html, "html");
-  fa_icon_ex.AddBodyContent(icon_html_block);
+  fa_icon_ex << icon_html_block;
 
 }

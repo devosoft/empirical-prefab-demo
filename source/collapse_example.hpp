@@ -15,7 +15,7 @@ void collapse_example( emp::web::Document& doc ) {
   emp::prefab::Card collapse_ex("INIT_CLOSED");
   doc << collapse_ex;
   collapse_ex.AddHeaderContent("<h3>Collapse</h3>");
-  collapse_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
+  collapse_ex << "<h3>Live Demo:</h3><hr>";
   emp::prefab::CommentBox box1;
   box1.AddContent("<h3>Box 1</h3>");
   emp::web::Div btn1;
@@ -38,13 +38,13 @@ void collapse_example( emp::web::Document& doc ) {
   collapse1.AddController(btn3, true);
   collapse2.AddController(collapse1.GetControllerDiv(1), true);
 
-  collapse_ex.AddBodyContent(collapse1.GetControllerDiv(0));
-  collapse_ex.AddBodyContent(collapse1.GetTargetDiv(0));
-  collapse_ex.AddBodyContent(collapse2.GetControllerDiv(0));
-  collapse_ex.AddBodyContent(collapse2.GetTargetDiv(0));
-  collapse_ex.AddBodyContent(collapse1.GetControllerDiv(1));
+  collapse_ex << collapse1.GetControllerDiv(0);
+  collapse_ex << collapse1.GetTargetDiv(0);
+  collapse_ex << collapse2.GetControllerDiv(0);
+  collapse_ex << collapse2.GetTargetDiv(0);
+  collapse_ex << collapse1.GetControllerDiv(1);
 
-  collapse_ex.AddBodyContent("<br><br><h3>Code:</h3><hr>");
+  collapse_ex << "<br><br><h3>Code:</h3><hr>";
 
   const std::string collapse_code =
     R"(
@@ -88,6 +88,6 @@ void collapse_example( emp::web::Document& doc ) {
     )";
 
   emp::prefab::CodeBlock collapse_code_block(collapse_code, "c++");
-  collapse_ex.AddBodyContent(collapse_code_block);
+  collapse_ex << (collapse_code_block);
 
 }

@@ -39,7 +39,6 @@ int main() {
   font_awesome_icon_example( doc );
   loading_icon_example( doc );
   modal_example( doc );
-  modal_example( doc );
   readout_panel_example( doc );
   toggle_switch_example( doc );
 

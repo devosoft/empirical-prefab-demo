@@ -16,12 +16,12 @@ void modal_example( emp::web::Document& doc ) {
   emp::prefab::Card modal_ex("INIT_CLOSED");
   doc << modal_ex;
   modal_ex.AddHeaderContent("<h3>Modal</h3>");
-  modal_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
+  modal_ex << "<h3>Live Demo:</h3><hr>";
   emp::prefab::Modal modal;
-  modal_ex.AddBodyContent(modal);
+  modal_ex << modal;
 
   modal.AddHeaderContent("<h3>Modal Header Section</h3>");
-  modal.AddBodyContent("This is the content of the modal");
+  modal << "This is the content of the modal";
 
   modal.AddFooterContent("Modal Footer Section");
   emp::web::Button close_btn([](){;}, "Close");
@@ -32,11 +32,11 @@ void modal_example( emp::web::Document& doc ) {
   modal.AddClosingX();
 
   emp::web::Button modal_btn([](){;}, "Show Modal");
-  modal_ex.AddBodyContent(modal_btn);
+  modal_ex << (modal_btn);
   modal_btn.SetAttr("class", "btn btn-info");
   modal.AddButton(modal_btn);
 
-  modal_ex.AddBodyContent("<br><br><br><h3>Code:</h3><hr>");
+  modal_ex << "<br><br><br><h3>Code:</h3><hr>";
   const std::string modal_code =
     R"(
       #include "emp/prefab/Modal.hpp"
@@ -50,7 +50,7 @@ void modal_example( emp::web::Document& doc ) {
         doc << modal;
 
         modal.AddHeaderContent("<h3>Modal Header Section</h3>");
-        modal.AddBodyContent("This is the content of the modal");
+        modal << ("This is the content of the modal");
 
         modal.AddFooterContent("Modal Footer Section");
         emp::web::Button close_btn([](){;}, "Close");
@@ -67,6 +67,6 @@ void modal_example( emp::web::Document& doc ) {
       }
     )";
   emp::prefab::CodeBlock modal_code_block(modal_code, "c++");
-  modal_ex.AddBodyContent(modal_code_block);
+  modal_ex << modal_code_block;
 
 }
