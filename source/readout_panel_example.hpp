@@ -65,7 +65,7 @@ void readout_panel_example( emp::web::Document& doc ) {
         doc << values;
         emp::web::Button adder([](){ ++counter; }, "Add one to counter")
         adder.SetAttr("class", "btn");
-        readout_panel_ex << adder;
+        doc << adder;
       }
     )";
 
