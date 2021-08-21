@@ -53,7 +53,7 @@ void readout_panel_example( emp::web::Document& doc ) {
         // Refresh values every 100 milliseconds
         emp::prefab::ReadoutPanel values("Readout Values", 100);
 
-        std::function<std::string()> random_number = [=]() mutable {
+        std::function<std::string()> random_number = [](){
           static emp::Random rand;
           return emp::to_string(rand.GetUInt());
         };
