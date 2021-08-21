@@ -16,13 +16,14 @@ void readout_panel_example( emp::web::Document& doc ) {
   // ------ Readout Panel Example ------
   emp::prefab::Card readout_panel_ex("INIT_CLOSED");
   doc << readout_panel_ex;
-  readout_panel_ex.AddHeaderContent("<h3>Readout Panel</h1");
+  readout_panel_ex.AddHeaderContent("<h3>Readout Panel</h3>");
   readout_panel_ex << "<h3>Live Demo:</h3><hr>";
 
-  emp::prefab::ReadoutPanel values("Readout Values", 100); // Refreshes 10 times a second
+  // Refresh values every 100 milliseconds
+  emp::prefab::ReadoutPanel values("Readout Values", 100);
 
   // A random number generator
-  std::function<std::string()> random_number = [=]() mutable {
+  std::function<std::string()> random_number = [](){
     static emp::Random rand;
     return emp::to_string(rand.GetUInt());
   };
@@ -49,8 +50,8 @@ void readout_panel_example( emp::web::Document& doc ) {
       int counter = 0;
 
       int main() {
-
-        emp::prefab::ReadoutPanel values("Readout Values", 100); // Refreshes 10 times a second
+        // Refresh values every 100 milliseconds
+        emp::prefab::ReadoutPanel values("Readout Values", 100);
 
         std::function<std::string()> random_number = [=]() mutable {
           static emp::Random rand;
