@@ -11,17 +11,13 @@
 
 SampleConfig cfg;
 
-// TODO: Find a way to initialize config panels within main()
-// Issue #366 (https://github.com/devosoft/Empirical/issues/366)
-emp::prefab::ConfigPanel config_panel(cfg);
-
 void config_panel_example( emp::web::Document& doc ) {
 
   // ------ Config Panel Example ------
   emp::prefab::Card config_panel_ex("INIT_CLOSED");
   doc << config_panel_ex;
   config_panel_ex.AddHeaderContent("<h3>Config Panel</h3>");
-  config_panel_ex.AddBodyContent("<h3>Live Demo:</h3><hr>");
+  config_panel_ex << "<h3>Live Demo:</h3><hr>";
 
   // apply configuration query params and config files to Config
   auto specs = emp::ArgManager::make_builtin_specs(&cfg);
@@ -29,12 +25,12 @@ void config_panel_example( emp::web::Document& doc ) {
   // cfg.Read("config.cfg");
   am.UseCallbacks();
   if (am.HasUnused()) std::exit(EXIT_FAILURE);
+  emp::prefab::ConfigPanel config_panel(cfg);
 
   // setup configuration panel
-  config_panel.Setup();
-  config_panel_ex.AddBodyContent(config_panel.GetConfigPanelDiv());
+  config_panel_ex << config_panel;
 
-  config_panel_ex.AddBodyContent("<br><h3>Code:</h3><hr>");
+  config_panel_ex << "<br><h3>Code:</h3><hr>";
 
   const std::string cp_code =
     R"(
@@ -48,7 +44,6 @@ void config_panel_example( emp::web::Document& doc ) {
       emp::web::Document doc("emp_base");
 
       SampleConfig cfg;
-      emp::prefab::ConfigPanel config_panel(cfg);
 
       int main(){
         // apply configuration query params and config files to SampleConfig
@@ -58,13 +53,12 @@ void config_panel_example( emp::web::Document& doc ) {
         am.UseCallbacks();
         if (am.HasUnused()) std::exit(EXIT_FAILURE);
 
-        // setup configuration panel
-        config_panel.Setup();
-        doc << config_panel.GetConfigPanelDiv();
+        emp::prefab::ConfigPanel config_panel(cfg);
+        doc << config_panel;
       }
     )";
 
   emp::prefab::CodeBlock cp_code_block(cp_code, "c++");
-  config_panel_ex.AddBodyContent(cp_code_block);
+  config_panel_ex << cp_code_block;
 
 }
