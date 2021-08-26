@@ -22,6 +22,7 @@
 #include "../loading_icon_example.hpp"
 #include "../modal_example.hpp"
 #include "../readout_panel_example.hpp"
+#include "../toggle_button_group_example.hpp"
 #include "../toggle_switch_example.hpp"
 
 emp::web::Document doc("emp_base");
@@ -42,6 +43,7 @@ int main() {
   loading_icon_example( doc );
   modal_example( doc );
   readout_panel_example( doc );
+  toggle_button_group_example( doc );
   toggle_switch_example( doc );
 
   emp::prefab::CloseLoadingModal();
