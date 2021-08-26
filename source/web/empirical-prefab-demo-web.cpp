@@ -16,6 +16,7 @@
 #include "../collapse_example.hpp"
 #include "../comment_box_example.hpp"
 #include "../config_panel_example.hpp"
+#include "../control_panel_example.hpp"
 #include "../empirical_info.hpp"
 #include "../font_awesome_icon_example.hpp"
 #include "../loading_icon_example.hpp"
@@ -36,6 +37,7 @@ int main() {
   collapse_example( doc );
   comment_box_example( doc );
   config_panel_example( doc );
+  control_panel_example( doc );
   font_awesome_icon_example( doc );
   loading_icon_example( doc );
   modal_example( doc );
