@@ -38,14 +38,6 @@ void code_block_example( emp::web::Document& doc ) {
 
   code_block_ex << "<p>This code bock is built using the code displayed within.</p>";
 
-  code_block_ex << "<p>Add to HTML file</p>";
-  const std::string cb_html =
-    R"(
-
-    )";
-  emp::prefab::CodeBlock cb_html_block(cb_html, "html");
-  code_block_ex << cb_html_block;
-
   code_block_ex << "<p>NOTE: A list of all languages supported by HighlightJS can be found <a href=\"https://highlightjs.org/static/demo/\" target=\"_blank\">here</a>";
 
 }
