@@ -49,11 +49,11 @@ void loading_modal_example( emp::web::Document& doc ) {
         <script src="jquery-1.11.2.min.js></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devosoft/Empirical/source/prefab/DefaultConfigPanelStyle.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devosoft/Empirical@26dbbe3/include/emp/prefab/DefaultConfigPanelStyle.css">
       </head>
 
       <body>
-        <script src="https://cdn.jsdelivr.net/gh/devosoft/Empirical/source/prefab/LoadingModal.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/devosoft/Empirical@26dbbe3/include/emp/prefab/LoadingModal.js"></script>
         <!-- Rest of web page -->
       </body>
       </html>

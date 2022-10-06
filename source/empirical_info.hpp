@@ -37,8 +37,7 @@ void empirical_info( emp::web::Document& doc ) {
       <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.0.0/highlight.min.js"></script>
 
       <!-- feature specific scripts -->
-      <script src="https://cdn.jsdelivr.net/gh/devosoft/Empirical@26dbbe3/include/emp/prefab/LoadingModal.js"></script>
-      <script src="https://cdn.jsdelivr.net/gh/devosoft/Empirical@26dbbe3/source/prefab/HighlightJS.js"></script>
+      <script src="https://cdn.jsdelivr.net/gh/devosoft/Empirical@26dbbe3/include/emp/prefab/HighlightJS.js"></script>
     )";
   emp::prefab::CodeBlock styles(styles_code, "html");
   doc << styles;
