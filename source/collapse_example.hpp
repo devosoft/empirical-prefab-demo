@@ -31,18 +31,18 @@ void collapse_example( emp::web::Document& doc ) {
   emp::prefab::CollapseCoupling collapse1(btn1, box1, true);
   emp::prefab::CollapseCoupling collapse2(btn2, box2, true);
 
-  emp::web::Div btn3;
-  btn3.SetAttr("class", "btn btn-success");
-  btn3 << "Button 3: controls all boxes";
-
-  collapse1.AddController(btn3, true);
-  collapse2.AddController(collapse1.GetControllerDiv(1), true);
+  // emp::web::Div btn3;
+  // btn3.SetAttr("class", "btn btn-success");
+  // btn3 << "Button 3: controls all boxes";
+  //
+  // collapse1.AddController(btn3, true);
+  // collapse2.AddController(btn3, true);
 
   collapse_ex << collapse1.GetControllerDiv(0);
   collapse_ex << collapse1.GetTargetDiv(0);
   collapse_ex << collapse2.GetControllerDiv(0);
   collapse_ex << collapse2.GetTargetDiv(0);
-  collapse_ex << collapse1.GetControllerDiv(1);
+  // collapse_ex << collapse1.GetControllerDiv(1);
 
   collapse_ex << "<br><br><h3>Code:</h3><hr>";
 
@@ -72,18 +72,10 @@ void collapse_example( emp::web::Document& doc ) {
         emp::prefab::CollapseCoupling collapse1(btn1, box1, true);
         emp::prefab::CollapseCoupling collapse2(btn2, box2, true);
 
-        // Create a button that controls two different CollapseCoupling instances
-        emp::web::Div btn3;
-        btn3.SetAttr("class", "btn btn-success");
-        btn3 << "Button 3: controls all boxes" ;
-        collapse1.AddController(btn3, true);
-        collapse2.AddController(collapse1.GetControllerDiv(1), true);
-
         doc << collapse1.GetControllerDiv(0);
         doc << collapse1.GetTargetDiv(0);
         doc << collapse2.GetControllerDiv(0);
         doc << collapse2.GetTargetDiv(0);
-        doc << collapse1.GetControllerDiv(1);
       }
     )";
 
