@@ -24,3 +24,6 @@ doc/_build/
 
 package-lock.json
 node_modules/
+
+third-party/emsdk/
+web/empirical-prefab-demo.js
