@@ -5,7 +5,7 @@ PROJECT := empirical-prefab-demo
 EMP_DIR := third-party/Empirical/include/
 
 # Flags to use regardless of compiler
-CFLAGS_all := -Wall -Wno-unused-function -std=c++17 -I$(EMP_DIR)/
+CFLAGS_all := -Wall -Wno-unused-function -std=c++2a -I$(EMP_DIR)/
 
 # Native compiler information
 CXX_nat := g++
@@ -14,7 +14,7 @@ CFLAGS_nat_debug := -g $(CFLAGS_all)
 
 # Emscripten compiler information
 CXX_web := emcc
-OFLAGS_web_all := -s "EXTRA_EXPORTED_RUNTIME_METHODS=['ccall', 'cwrap']" -s TOTAL_MEMORY=67108864 --js-library $(EMP_DIR)/emp/web/library_emp.js -s EXPORTED_FUNCTIONS="['_main', '_empCppCallback', '_empDoCppCallback']" -s DISABLE_EXCEPTION_CATCHING=1 -s NO_EXIT_RUNTIME=1 #--embed-file configs
+OFLAGS_web_all := -s "EXTRA_EXPORTED_RUNTIME_METHODS=['ccall', 'cwrap', 'allocate']" -s TOTAL_MEMORY=67108864 --js-library $(EMP_DIR)/emp/web/library_emp.js -s EXPORTED_FUNCTIONS="['_main', '_empCppCallback', '_empDoCppCallback']" -s DISABLE_EXCEPTION_CATCHING=1 -s NO_EXIT_RUNTIME=1 #--embed-file configs
 OFLAGS_web := -Oz -DNDEBUG
 OFLAGS_web_debug := -g4 -Oz -Wno-dollar-in-identifier-extension
 
